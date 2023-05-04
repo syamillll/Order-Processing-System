@@ -1,0 +1,26 @@
+<head>
+    <link rel="stylesheet" href="../../static/app/style.css" />
+    <title>Order Processing System</title>
+</head>
+
+<div class="row">
+    <div class="center-box-login">
+        <section id="loginForm">
+            <form action="." method="post" class="form-horizontal">
+                {% csrf_token %}
+                <h1 class="text-login">Order Processing System</h1>
+                <hr />
+                <h4>Thank you for using this system</h4>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="hidden" name="next" value="/login" />
+                        <input type="submit" value="Log in again" class="login-button" />
+                    </div>
+                </div>
+                {% if form.errors %}
+                <p class="validation-summary-errors">Please enter a correct user name and password.</p>
+                {% endif %}
+            </form>
+        </section>
+    </div>
+</div>

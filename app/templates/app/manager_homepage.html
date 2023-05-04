@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../static/app/style.css" />
+  <title>Manager Home</title>
+</head>
+
+<body>
+  <header>
+    <div class="navbar">
+      <a href="/menu">Home</a>
+      <div class="dropdown">
+        <button class="dropbtn">Delivery Order</button>
+        <div class="dropdown-content">
+          <a href="/viewAllDO">View All</a>
+          <a href="/verifyDO">Verify</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Restock Order</button>
+        <div class="dropdown-content">
+          <a href="/viewRO">View</a>
+          <a href="/verifyRO">Verify</a>
+        </div>
+      </div>
+      <div>
+        <div class="dropdown">
+          <button class="dropbtn">Inventory</button>
+          <div class="dropdown-content">
+            <a href="/viewInventory">View</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="logout"><a href="/logout">Log out</a></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="home-warehouse">
+    <h1 class="home-warehouse-header">Welcome to Manager Homepage, {{ user.username }}</h1>
+    <div class="home-warehouse-links">
+      <a href="/viewAllDO" class="home-manager-link-1">View All Delivery Order</a>
+      <a href="/verifyDO" class="home-manager-link-2">Verify Delivery Order</a>
+      <a href="/viewInventory" class="home-manager-link-4">View Inventory</a>
+      <a href="/viewRO" class="home-manager-link-3">View Restock Order</a>
+      <a href="/verifyRO" class="home-manager-link-5">Verify Restock Order</a>
+    </div>
+  </section>
+</body>
+
+</html>

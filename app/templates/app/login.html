@@ -1,0 +1,38 @@
+<head>
+    <link rel="stylesheet" href="../../static/app/style.css" />
+    <title>Order Processing System</title>
+</head>
+
+<div class="row">
+    <div class="center-box-login">
+        <section id="loginForm">
+            <form action="." method="post" class="form-horizontal">
+                {% csrf_token %}
+                <h1 class="text-login">Order Processing System</h1>
+                <hr />
+                <div class="form-group">
+                    <label for="username">User name</label>
+                    <div class="col-md-10">
+                        {{ form.username }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id_password" class="col-md-2 control-label">Password</label>
+                    <div class="col-md-10">
+                        {{ form.password }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="hidden" name="next" value="/menu" />
+                        <input type="submit" value="Log in" class="login-button" />
+                    </div>
+                </div>
+                {% if form.errors %}
+                <p class="validation-summary-errors">Please enter a correct user name and password.</p>
+                {% endif %}
+            </form>
+        </section>
+    </div>
+</div>
+

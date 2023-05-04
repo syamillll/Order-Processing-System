@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../static/app/style.css" />
+  <title>Client Home</title>
+</head>
+
+<body>
+  <header>
+    <div class="navbar">
+      <a href="/menu">Home</a>
+      <div class="dropdown">
+        <button class="dropbtn">Purchase Order</button>
+        <div class="dropdown-content">
+          <a href="/submitPO">Submit</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Delivery Order</button>
+        <div class="dropdown-content">
+          <a href="/viewDO">View</a>
+        </div>
+      </div>
+      <div>
+        <button class="logout"><a href="/logout">Log out</a></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="home-client">
+    <h1 class="home-client-header">Welcome to Client Homepage, {{ user.username }}</h1>
+    <div class="home-client-links">
+      <a href="/submitPO" class="home-client-link-1">Submit Purchase Order</a>
+      <a href="/viewDO" class="home-client-link-2">View Delivery Order</a>
+    </div>
+  </section>
+</body>
+
+</html>
