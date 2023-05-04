@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../static/app/style.css" />
+  <title>Submit restock order warehouse</title>
+</head>
+
+<body>
+  <header>
+    <div class="navbar">
+      <a href="/menu">Home</a>
+      <div class="dropdown">
+        <button class="dropbtn">Inventory</button>
+        <div class="dropdown-content">
+          <a href="/viewInventory">View</a>
+          <a href="/confirmItem">Confirm Availability</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Restock Order</button>
+        <div class="dropdown-content">
+          <a href="/submitRO">Submit</a>
+          <a href="/viewRO">View</a>
+        </div>
+      </div>
+      <div>
+        <button class="logout"><a href="\logout">Log out</a></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="content-submitro-warehouse">
+    <div class="content-header-submitro-warehouse">Restock order</div>
+    <section class="content-more-submitro-warehouse">
+      <div class="SubmitRO-sentence">Inventory:</div>
+      <div>
+        <table class="main-table-submitro-warehouse">
+          <tr class="row-1-submitro-warehouse">
+            <td>Item Name</td>
+            <td>Quantity Available</td>
+          </tr>
+          {% for column in data %}
+          <tr>
+            <td>{{column.fields.itemName}}</td>
+            <td>{{column.fields.itemQuantity}}</td>
+          </tr>
+          {% endfor %}
+
+        </table>
+
+        <!--//////////////////////////////////////////////-->
+
+        <div class="secondry-table-submitro-warehouse">
+          <div class="row-1-secondry-submitro-warehouse">
+            <div>Restock order form</div>
+          </div>
+          <div class="labels-secondry-table"></div>
+          <form id="add" class="labels-secondry-table" action="submitROsuccess" method="POST">
+            {% csrf_token %}
+
+            <label for="check">Item name:</label>
+            {{ form.itemName }}
+
+            <label for="check">Item needed:</label>
+            {{ form.itemQuantity }}
+          </form>
+        </div>
+
+        <form>
+          <input form="add" type="submit" value="Submit" class="submit-CreateDO" />
+        </form>
+      </div>
+    </section>
+  </section>
+</body>
+
+</html>

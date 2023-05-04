@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../static/app/style.css" />
+  <title>View Restock Order</title>
+</head>
+
+<body>
+  <header>
+    <div class="navbar">
+      <a href="/menu">Home</a>
+      <div class="dropdown">
+        <button class="dropbtn">Inventory</button>
+        <div class="dropdown-content">
+          <a href="/viewInventory">View</a>
+          <a href="/confirmItem">Confirm Availability</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Restock Order</button>
+        <div class="dropdown-content">
+          <a href="/submitRO">Submit</a>
+          <a href="/viewRO">View</a>
+        </div>
+      </div>
+      <div>
+        <button class="logout"><a href="\logout">Log out</a></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="content-restock">
+    <div class="content-header-restock">View Restock Order</div>
+
+    <section class="content-more-restock">
+      <form class="check-po" action="viewROdetails" method="POST">
+        {% csrf_token %}
+        <label for="check">Restock Order ID:</label>
+        {{ form.id }}
+        <button type="submit" class="check-restock-button">
+          <a class="check-restock-button-link">View</a>
+        </button>
+      </form>
+
+      {% if doesNotExist %}
+      <p>Restock Order ID does not exist</p>
+      {% endif %}
+
+      <div>
+        <table class="main-table-restock">
+          <tr class="row-1-po">
+            <td>Restock Order ID</td>
+            <td>Action</td>
+          </tr>
+          {% for column in data %}
+          <tr>
+            <td>{{column.pk}}</td>
+            <td>
+              <form method='POST' action='viewROdetails'>
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{column.pk}}" />
+                <input type="submit" value="View Details" class="restock-view-details"/>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+
+    </section>
+  </section>
+</body>
+
+</html>

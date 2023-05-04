@@ -1,0 +1,87 @@
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../static/app/style.css" />
+  <title>View PO</title>
+</head>
+
+<body>
+  <header>
+    <div class="navbar">
+      <a href="/menu">Home</a>
+      <div class="dropdown">
+        <button class="dropbtn">Purchase Order</button>
+        <div class="dropdown-content">
+          <a href="/submitPO">Submit</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Delivery Order</button>
+        <div class="dropdown-content">
+          <a href="/viewDO">View</a>
+        </div>
+      </div>
+      <div>
+        <button class="logout"><a href="/logout">Log out</a></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="content-po">
+    <div class="content-header-po">Purchase Order</div>
+
+    <section class="content-more-po">
+      <form class="check-po" action="submitPOitems" method="POST">
+        {% csrf_token %}
+        <label for="check">Purchase Order ID: </label>
+        <input type="text" name='purchaseID' value="{{ purchaseID }}" class="form-control" readonly>
+        <br>
+        <label for="check">Item Name:</label>
+        {{ form.itemName }}
+        <br>
+        <label for="check">Item Quantity:</label>
+        {{ form.itemQuantity }}
+        <br>
+        <label for="check">Item Price:</label>
+        {{ form.unitPrice }}
+        <br>
+        <button type="submit" class="login-button">Add Item</button>
+      </form>
+
+      <div>
+        <table class="main-table-po">
+          <tr class="row-1-po">
+            <td>Item ID</td>
+            <td>Item Name</td>
+            <td>Item Quantity</td>
+            <td>Unit Price</td>
+          </tr>
+          {% for column in data %}
+          <tr>
+            <td>{{column.pk}}</td>
+            <td>{{column.fields.itemName}}</td>
+            <td>{{column.fields.itemQuantity}}</td>
+            <td>{{column.fields.unitPrice}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+      <div>
+        <button class="submit-CreateDO"><a href="/menu">Done</a></button>
+      </div>
+
+    </section>
+  </section>
+
+
+</body>
+
+</html>
+
+{% endblock %}

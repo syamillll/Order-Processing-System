@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../static/app/style.css" />
+  <title>Verify Delivery Order</title>
+</head>
+
+<body>
+  <header>
+    <div class="navbar">
+      <a href="/menu">Home</a>
+      <div class="dropdown">
+        <button class="dropbtn">Delivery Order</button>
+        <div class="dropdown-content">
+          <a href="/viewAllDO">View All</a>
+          <a href="/verifyDO">Verify</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Restock Order</button>
+        <div class="dropdown-content">
+          <a href="/viewRO">View</a>
+          <a href="/verifyRO">Verify</a>
+        </div>
+      </div>
+      <div>
+        <div class="dropdown">
+          <button class="dropbtn">Inventory</button>
+          <div class="dropdown-content">
+            <a href="/viewInventory">View</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="logout"><a href="/logout">Log out</a></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="content-verifyDO2-m">
+    <div class="content-header-po">Verify Delivery Order</div>
+
+    <section class="content-more-verifyDO2-m">
+      <form action="verifyDOapproved" method="POST">
+        {% csrf_token %}
+        <div class="form-buttons" class="form-buttons-container">
+          <button class="decline-button" form="DO" type="submit" formaction="verifyDOdisapproved">Decline</button>
+          <button class="approve-button" form="DO" type="submit">Approve</button>
+        </div>
+      </form>
+
+      <div class="form-container">
+        <form id="DO" action="verifyDOapproved" class="form-left" method="POST">
+          {% csrf_token %}
+          <label>Delivery Order</label>
+          <table>
+            <tr>
+              <td>Delivery Order ID:</td>
+              <td><input type="text" name='deliveryID' value="{{ DO.deliveryID }}" class="form-control" readonly></td>
+            </tr>
+            <td>Purchase Order ID:</td>
+            <td><input value="{{ PO.purchaseID}}" readonly></td>
+            </tr>
+            <tr>
+              <td>Delivery Address:</td>
+              <td><input value="{{ DO.deliveryAddress }}" readonly></td>
+            </tr>
+            <tr>
+              <td>Delivery Date:</td>
+              <td><input value="{{ DO.deliveryDate }}" readonly></td>
+            </tr>
+          </table>
+
+          <table class="main-DOtable-verify-do2">
+            <tr class="row-1-verify-do2">
+              <td>Item ID</td>
+              <td>Item Name</td>
+              <td>Quantity</td>
+            </tr>
+            {% for column in data %}
+            <tr>
+              <td>{{column.pk}}</td>
+              <td>{{column.fields.itemName}}</td>
+              <td>{{column.fields.itemQuantity}}</td>
+            </tr>
+            {% endfor %}
+          </table>
+
+        </form>
+
+
+        <form class="form-right">
+          <label>Purchase Order</label>
+          <table>
+            <tr>
+              <td>Purchase Order ID:</td>
+              <td><input value="{{ PO.purchaseID}}" readonly></td>
+            </tr>
+            <tr>
+              <td>Purchase Address:</td>
+              <td><input value="{{ PO.deliveryAddress}}" readonly></td>
+            </tr>
+            <tr>
+              <td>Delivery Date:</td>
+              <td><input value="{{ PO.deliveryDate}}" readonly></td>
+            </tr>
+            <tr>
+              <td>Total Price:</td>
+              <td><input value="{{ PO.totalPrice}}" readonly></td>
+            </tr>
+          </table>
+
+          <table class="main-POtable-verify-do2">
+            <tr class="row-1-verify-do2">
+              <td>Item ID</td>
+              <td>Item Name</td>
+              <td>Quantity</td>
+              <td>Price</td>
+              <td></td>
+            </tr>
+            {% for column in data %}
+            <tr>
+              <td>{{column.pk}}</td>
+              <td>{{column.fields.itemName}}</td>
+              <td>{{column.fields.itemQuantity}}</td>
+              <td>{{column.fields.unitPrice}}</td>
+            </tr>
+            {% endfor %}
+          </table>
+
+        </form>
+      </div>
+
+
+    </section>
+
+  </section>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../static/app/style.css" />
+  <title>Veriy Restock Order</title>
+</head>
+
+<body>
+  <header>
+    <div class="navbar">
+      <a href="/menu">Home</a>
+      <div class="dropdown">
+        <button class="dropbtn">Delivery Order</button>
+        <div class="dropdown-content">
+          <a href="/viewAllDO">View All</a>
+          <a href="/verifyDO">Verify</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Restock Order</button>
+        <div class="dropdown-content">
+          <a href="/viewRO">View</a>
+          <a href="/verifyRO">Verify</a>
+        </div>
+      </div>
+      <div>
+        <div class="dropdown">
+          <button class="dropbtn">Inventory</button>
+          <div class="dropdown-content">
+            <a href="/viewInventory">View</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="logout"><a href="/logout">Log out</a></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="content-po">
+    <div class="content-header-po">Verify Restock Order</div>
+
+    <section class="content-more-po">
+      <form class="check-po" action="verifyRO">
+        <h2>Restock Order #{{ RO.restockID }} has been successfully verified</h2>
+        <br><br>
+        <table>
+          <tr>
+            <td>Restock Order ID:</td>
+            <td><input value="{{ RO.restockID }}" readonly></td>
+          </tr>
+          <tr>
+            <td>Status:</td>
+            <td><input value="{{ RO.status }}" readonly></td>
+          </tr>
+        </table>
+        <br><br><br>
+        <div>
+            <button class="approve-button">Done</button>
+        </div>
+      </form>
+
+    </section>
+  </section>
+
+
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../static/app/style.css" />
+  <title>View Purchase Order</title>
+</head>
+
+<body>
+  <header>
+    <div class="navbar">
+      <a href="/menu">Home</a>
+      <div class="dropdown">
+        <button class="dropbtn">Inventory</button>
+        <div class="dropdown-content">
+          <a href="/viewInventory">View</a>
+          <a href="/confirmItem">Confirm Availability</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Restock Order</button>
+        <div class="dropdown-content">
+          <a href="/submitRO">Submit</a>
+          <a href="/viewRO">View</a>
+        </div>
+      </div>
+      <div>
+        <button class="logout"><a href="\logout">Log out</a></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="content-po">
+    <div class="content-header-po">Restock Order</div>
+
+    <section class="content-more-po">
+      <form class="check-po">
+        <label for="check">Restock Order ID: {{RO.pk}}</label>
+        <br>
+      </form>
+
+      <div>
+        <table class="main-table-po">
+          <tr class="row-1-po">
+            <td>Item Name</td>
+            <td>Item Quantity</td>
+          </tr>
+          <tr>
+            <td>{{RO.itemName}}</td>
+            <td>{{RO.itemQuantity}}</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </section>
+
+
+</body>
+
+</html>
+
+{% endblock %}
